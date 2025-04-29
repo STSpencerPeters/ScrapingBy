@@ -18,11 +18,15 @@ interface UserDAO {
     @Query("SELECT * FROM Users WHERE username = :username")
     suspend fun getUserByUsername(username: String): User?
 
+    //SQL function to get a User based off of their ID
+    @Query("SELECT * FROM Users WHERE id = :userId")
+    suspend fun getUserById(userId: Int): User?
+
     //SQL function to update the Users profilePicture
     @Query("UPDATE Users SET profileImage = :profileImage WHERE id = :userId")
-    suspend fun updateUserProfileImage(profileImage: String, userId : Int): User?
+    suspend fun updateUserProfileImage(profileImage: String, userId : Int)
 
     //SQL function to update the Users Password
     @Query("UPDATE Users SET password =:password WHERE id = :userId")
-    suspend fun updateUserPassword(password: String, userId: Int): User?
+    suspend fun updateUserPassword(password: String, userId: Int)
 }

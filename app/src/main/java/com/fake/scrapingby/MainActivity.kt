@@ -1,20 +1,44 @@
 package com.fake.scrapingby
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val db = AppDatabase.getInstance(this)
+        val userDao = db.userDAO()
+
+        lifecycleScope.launch {
+            // Register a new user
+            val newUser = User(username = "TestUser", password = "1234")
+            userDao.registerUser(newUser)
+
+            // Get the latest user (id = 1 if this is first)
+            val testUser = userDao.getUserById(2)
+
+            if (testUser != null) {
+                Log.d("RoomTest", "User: ${testUser.username}, Pass: ${testUser.password}")
+                if (testUser.profileImage == null) {
+                    Log.d("RoomTest", "No profile image yet.")
+                }
+            } else {
+                Log.d("RoomTest", "No user found.")
+            }
+
+            // Check if login is successful
+            val loginResult = userDao.loginUser("TestUsers", "1234")
+
+            if (loginResult != null) {
+                Log.d("LoginTest", "Login successful: ${loginResult.username}")
+            } else {
+                Log.d("LoginTest", "Login failed: incorrect credentials")
+            }
         }
     }
 }
