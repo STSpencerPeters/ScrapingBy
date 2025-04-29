@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@mipmap/logo"
             android:layout_gravity="center"/>
 
@@ -51,7 +51,25 @@
             android:inputType="text"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="Login"
+            android:backgroundTint="#2471a3"/>
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:text="Create an Account"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"/>
 
 
     </LinearLayout>
