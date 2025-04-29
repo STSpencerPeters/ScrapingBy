@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             // Register a new user
-            val newUser = User(username = "TestUser", password = "1234")
-            userDao.registerUser(newUser)
+            //val newUser = User(username = "TestUser", password = "1234")
+            //userDao.registerUser(newUser)
 
             // Get the latest user (id = 1 if this is first)
             val testUser = userDao.getUserById(2)
