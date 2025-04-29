@@ -14,9 +14,9 @@ interface UserDAO {
     @Query("SELECT * FROM Users WHERE username = :username AND password = :password")
     suspend fun loginUser(username: String, password: String): User?
 
-    //SQL function to get all the users based off of their Username
+    //SQL function to get a User based off of their Username
     @Query("SELECT * FROM Users WHERE username = :username")
-    suspend fun getAllUsersByUsername(username: String): User?
+    suspend fun getUserByUsername(username: String): User?
 
     //SQL function to update the Users profilePicture
     @Query("UPDATE Users SET profileImage = :profileImage WHERE id = :userId")
