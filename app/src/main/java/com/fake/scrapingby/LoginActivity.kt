@@ -50,11 +50,11 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-        /*Complete this when register is created.
+
         registerText.setOnClickListener{
-            startActivity(Intent(this, ))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-         */
+
     }
 }
