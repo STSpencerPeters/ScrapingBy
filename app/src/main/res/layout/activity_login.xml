@@ -48,7 +48,7 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="12dp"
             android:hint="Password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textSize="20sp" />
 
         <Button
