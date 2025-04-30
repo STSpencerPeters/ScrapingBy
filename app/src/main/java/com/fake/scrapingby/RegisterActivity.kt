@@ -8,11 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -24,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var registerButton: Button
     private lateinit var loginText : TextView
 
-    private lateinit var userRepository: Repository
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val db = AppDatabase.getInstance(this)
         val userDao = db.userDAO()
-        userRepository = Repository(db.userDAO())
+        userRepository = UserRepository(db.userDAO())
 
         //Creating the logic for registering a User and storing it to the database. Making sure all the information is accounted for.
         registerButton.setOnClickListener{

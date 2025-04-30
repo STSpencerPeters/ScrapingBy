@@ -6,6 +6,12 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.Date
 
+/*
+    Code Attribution:
+    Room Database - Using Foreign Keys!, 2023.
+    This reference helped to create foreign keys to link my tables
+ */
+//Created table for Expense with its fields.
 @Entity(
     tableName = "Expenses",
     foreignKeys = [ForeignKey(

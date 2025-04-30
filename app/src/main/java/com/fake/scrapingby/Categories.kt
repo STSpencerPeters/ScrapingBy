@@ -5,6 +5,12 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+/*
+    Code Attribution:
+    Room Database - Using Foreign Keys!, 2023.
+    This reference helped to create foreign keys to link my tables
+ */
+//Created table for Category with its fields.
 @Entity(
     tableName = "Category",
     foreignKeys = [ForeignKey(

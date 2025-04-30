@@ -1,6 +1,6 @@
 package com.fake.scrapingby
 
-class Repository(private val userDAO: UserDAO, private val categoryDAO: CategoryDAO, private val expenseDAO: ExpensesDAO) {
+class UserRepository(private val userDAO: UserDAO) {
 
     //Function to register the User
     suspend fun registerUSer(user : User){
@@ -15,15 +15,5 @@ class Repository(private val userDAO: UserDAO, private val categoryDAO: Category
     //Function to check if the Username of the User registering is available.
     suspend fun isUsernameTaken(username: String): Boolean{
         return userDAO.getUserByUsername(username) != null
-    }
-
-    //Function to add a category
-    suspend fun addCategory(categories: Categories){
-        categoryDAO.createCategory(categories)
-    }
-
-    //Function to add an expense
-    suspend fun addExpense(expenses: Expenses){
-        expenseDAO.createExpense(expenses)
     }
 }
