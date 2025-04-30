@@ -4,10 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [User::class], version = 1)
+
+
+
+
+//Creating the database to store the information.
+@Database(entities = [User::class, Expenses::class, Categories::class], version = 3)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDAO() : UserDAO
+    abstract fun expenseDAO() : ExpensesDAO
+    abstract fun categoryDAO(): CategoryDAO
 
     companion object{
         @Volatile
@@ -19,7 +28,10 @@ abstract class AppDatabase : RoomDatabase(){
                     context.applicationContext,
                     AppDatabase::class.java,
                     "user_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    //.addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                    .build()
                 INSTANCE = instance
                 instance
             }
