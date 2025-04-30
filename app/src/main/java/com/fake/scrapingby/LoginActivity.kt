@@ -1,5 +1,6 @@
 package com.fake.scrapingby
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -44,6 +45,12 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch{
                 val user = userRepository.loginUser(username, password)
                 if(user != null){
+                    //Saving username for later use
+                    val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
+                    with(sharedPref.edit()){
+                        putString("loggedInUsername", username)
+                        apply()
+                    }
                     Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()//Change when dashboard is added
                 } else{
                     Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
