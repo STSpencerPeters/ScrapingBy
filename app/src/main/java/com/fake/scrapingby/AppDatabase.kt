@@ -7,18 +7,16 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-//Updating the schema of the project
-val MIGRATION_1_2 = object : Migration(1, 2) {
-    override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("ALTER TABLE Users ADD COLUMN firstName TEXT NOT NULL DEFAULT ''")
-        database.execSQL("ALTER TABLE Users ADD COLUMN surname TEXT NOT NULL DEFAULT ''")
-    }
-}
+
+
+
 
 //Creating the database to store the information.
-@Database(entities = [User::class], version = 2)
+@Database(entities = [User::class, Expenses::class, Categories::class], version = 3)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDAO() : UserDAO
+    abstract fun expenseDAO() : ExpensesDAO
+    abstract fun categoryDAO(): CategoryDAO
 
     companion object{
         @Volatile
@@ -32,7 +30,7 @@ abstract class AppDatabase : RoomDatabase(){
                     "user_database"
                 )
                     //.fallbackToDestructiveMigration()
-                    .addMigrations(MIGRATION_1_2)
+                    //.addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
                 INSTANCE = instance
                 instance
