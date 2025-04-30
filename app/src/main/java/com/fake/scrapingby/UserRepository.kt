@@ -1,6 +1,6 @@
 package com.fake.scrapingby
 
-class Repository(private val userDAO: UserDAO) {
+class UserRepository(private val userDAO: UserDAO) {
 
     //Function to register the User
     suspend fun registerUSer(user : User){
