@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true" android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="10dp"/>
+            <stroke android:color="#2471a3" android:width="1dp"/>
+        </shape>
+    </item>
+
+    <item android:state_enabled="true" >
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="10dp"/>
+            <stroke android:color="@color/material_dynamic_primary0" android:width="1dp"/>
+        </shape>
+    </item>
+</selector>
+<!--Code Attribution
+    Design Custom EditText - Android Studio Tutorial, 2020
+    This reference helped to create more appealing text inputs for my UI elements-->
