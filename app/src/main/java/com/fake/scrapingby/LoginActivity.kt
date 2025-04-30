@@ -37,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
         userRepository = Repository(db.userDAO())
 
+        //Creating the logic for logging a user into the system and validating their information.
         loginButton.setOnClickListener{
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()

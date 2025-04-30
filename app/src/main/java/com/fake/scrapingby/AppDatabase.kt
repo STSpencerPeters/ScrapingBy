@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
+//Updating the schema of the project
 val MIGRATION_1_2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL("ALTER TABLE Users ADD COLUMN firstName TEXT NOT NULL DEFAULT ''")
@@ -14,7 +15,7 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
     }
 }
 
-
+//Creating the database to store the information.
 @Database(entities = [User::class], version = 2)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDAO() : UserDAO

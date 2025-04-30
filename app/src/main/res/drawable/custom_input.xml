@@ -16,3 +16,6 @@
         </shape>
     </item>
 </selector>
+<!--Code Attribution
+    Design Custom EditText - Android Studio Tutorial, 2020
+    This reference helped to create more appealing text inputs for my UI elements-->

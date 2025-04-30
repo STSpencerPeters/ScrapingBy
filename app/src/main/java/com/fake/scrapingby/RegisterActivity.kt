@@ -39,10 +39,12 @@ class RegisterActivity : AppCompatActivity() {
         registerButton = findViewById(R.id.registerButton)
         loginText = findViewById(R.id.loginText)
 
+
         val db = AppDatabase.getInstance(this)
         val userDao = db.userDAO()
         userRepository = Repository(db.userDAO())
 
+        //Creating the logic for registering a User and storing it to the database. Making sure all the information is accounted for.
         registerButton.setOnClickListener{
             val firstName = firstNameEditText.text.toString()
             val surname = surnameEditText.text.toString()

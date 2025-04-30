@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.Date
 
+//Creating fields for a User in the database.
 //User table
 @Entity(tableName = "Users")
 data class User(
