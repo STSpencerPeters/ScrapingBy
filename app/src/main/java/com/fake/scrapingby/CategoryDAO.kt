@@ -6,9 +6,11 @@ import androidx.room.Query
 
 @Dao
 interface CategoryDAO {
+    //SQL statement to create a new category
     @Insert
     suspend fun createCategory(categories: Categories)
 
+    //SQL satement to search for all categories associated with the user.
     @Query("SELECT * FROM CATEGORY WHERE userId = :userId")
     suspend fun getCategoriesForUser(userId: Int): List<Categories>
 }
