@@ -9,8 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
@@ -21,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginButton : Button
     private lateinit var registerText : TextView
 
-    private lateinit var userRepository: Repository
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         val db = AppDatabase.getInstance(this)
         val userDao = db.userDAO()
 
-        userRepository = Repository(db.userDAO())
+        userRepository = UserRepository(db.userDAO())
 
         //Creating the logic for logging a user into the system and validating their information.
         loginButton.setOnClickListener{
