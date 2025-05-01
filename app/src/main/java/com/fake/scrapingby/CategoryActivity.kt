@@ -46,7 +46,7 @@ class CategoryActivity : AppCompatActivity() {
         }
 
         addCategoryButton.setOnClickListener{
-            //startActivity(Intent(this, CreateCategoryActivity::class.java))
+            startActivity(Intent(this, AddCategoryActivity::class.java))
         }
 
         backArrowButton.setOnClickListener{
