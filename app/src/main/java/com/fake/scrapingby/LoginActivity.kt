@@ -46,11 +46,13 @@ class LoginActivity : AppCompatActivity() {
                 if(user != null){
                     //Saving username for later use
                     val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
-                    with(sharedPref.edit()){
-                        putString("loggedInUsername", username)
+                    with(sharedPref.edit()) {
+                        putString("loggedInUsername", user.username)
+                        putInt("loggedInUserId", user.id)
                         apply()
                     }
                     Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()//Change when dashboard is added
+                    startActivity(Intent(this@LoginActivity, MainMenu::class.java))
                 } else{
                     Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
                 }
@@ -60,7 +62,5 @@ class LoginActivity : AppCompatActivity() {
         registerText.setOnClickListener{
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-
-
     }
 }
