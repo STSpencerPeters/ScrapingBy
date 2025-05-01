@@ -70,7 +70,7 @@ class MainMenu : AppCompatActivity() {
                 }
                 //This item will send the user to the Adding Expense Dashboard
                 R.id.expense -> {
-                    //startActivity(Intent(this, ExpenseActivity::class.java))
+                    startActivity(Intent(this, AddExpense::class.java))
                     true
                 }
                 //This item will send the user to the settings Dashboard
