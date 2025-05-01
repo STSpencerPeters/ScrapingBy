@@ -31,11 +31,12 @@ class MenuDashboardActivity : AppCompatActivity() {
         categoryCardLayout = findViewById(R.id.categoryCard)
         logoutCardLayout = findViewById(R.id.logoutCard)
 
-        /*
-             //Card to send the user to the Profile Page
-            profileCardLayout.setOnClickListener{
+
+        //Card to send the user to the Profile Page
+        profileCardLayout.setOnClickListener{
             startActivity(Intent(this, ProfileActivity::class.java))
-            }
+        }
+        /*
 
             //Card to send the user to the Preferences Page
             preferencesCardlayout.setOnClickListener{
