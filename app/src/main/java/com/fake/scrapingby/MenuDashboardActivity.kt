@@ -43,11 +43,12 @@ class MenuDashboardActivity : AppCompatActivity() {
                 startActivity(Intent(this, PreferencesActivity::class.java))
             }
 
+         */
+
             //Card to send the user to the Category Page
             categoryCardLayout.setOnClickListener{
                 startActivity(Intent(this, CategoryActivity::class.java))
             }
-         */
 
 
         //Card to log the user out of the system and send them back to the Login Page.
