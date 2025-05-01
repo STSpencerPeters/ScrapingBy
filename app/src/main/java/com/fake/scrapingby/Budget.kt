@@ -24,6 +24,6 @@ import androidx.room.PrimaryKey
 data class Budget(
     @PrimaryKey(autoGenerate = true)val id: Int = 0,
     val userId: Int,
-    val budegetMinimum: Double,
+    val budgetMinimum: Double,
     val budgetMaximum: Double
 )
