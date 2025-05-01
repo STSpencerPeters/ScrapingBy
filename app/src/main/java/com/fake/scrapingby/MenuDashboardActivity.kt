@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
+//Cass that handles the screen that holds the buttons for, Profile, Preferences, Categories and Logout
 class MenuDashboardActivity : AppCompatActivity() {
 
 

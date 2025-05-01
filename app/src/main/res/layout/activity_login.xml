@@ -13,6 +13,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <!-- Logo -->
         <ImageView
             android:id="@+id/Logo"
             android:layout_width="150dp"
@@ -20,6 +21,7 @@
             android:src="@mipmap/logo"
             android:layout_gravity="center"/>
 
+        <!-- Input Field for username -->
         <EditText
             android:id="@+id/usernameText"
             android:layout_width="300dp"
@@ -36,6 +38,7 @@
             android:textSize="20sp"
           />
 
+        <!-- Input Field for password -->
         <EditText
             android:id="@+id/passwordText"
             android:layout_width="300dp"
@@ -51,6 +54,7 @@
             android:inputType="textPassword"
             android:textSize="20sp" />
 
+        <!-- Button to log the user in -->
         <Button
             android:id="@+id/loginButton"
             android:layout_width="150dp"
@@ -61,6 +65,7 @@
             android:text="Login"
             android:backgroundTint="#2471a3"/>
 
+        <!-- Text to send the user to the register page -->
         <TextView
             android:id="@+id/registerText"
             android:layout_width="120dp"
