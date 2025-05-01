@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
+//Class to Register the user in the database.
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var firstNameEditText: EditText
@@ -50,16 +51,19 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = confirmPasswordEditText.text.toString()
 
             lifecycleScope.launch{
+                //Checking if all the fields have been filled in.
                 if(firstName.isBlank() || surname.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()){
                     Toast.makeText(this@RegisterActivity, "Please fill all fields", Toast.LENGTH_SHORT).show()
                     return@launch
                 }
 
+                //Checking to see if the passwords are the same.
                 if(password != confirmPassword){
                     Toast.makeText(this@RegisterActivity, "Please Make Sure Passwords Match", Toast.LENGTH_SHORT).show()
                     return@launch
                 }
 
+                //Checking to see if the username has been taken.
                 if(userRepository.isUsernameTaken(username)){
                     Toast.makeText(this@RegisterActivity, "Username already exists", Toast.LENGTH_SHORT).show()
                 } else {
@@ -71,6 +75,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        //Link to send the user back to login if they already have an account.
         loginText.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }

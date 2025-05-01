@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
+//Activity for Creating Categories
 class AddCategoryActivity : AppCompatActivity() {
 
     private lateinit var backArrowButton: ImageButton
@@ -31,6 +32,7 @@ class AddCategoryActivity : AppCompatActivity() {
         categoryNameTextEdit = findViewById(R.id.categoryNameEditText)
         addCategoryButton = findViewById(R.id.saveCategoryButton)
 
+
         val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
         val currentuserId = sharedPref.getInt("loggedInUserId", -1)
 
@@ -38,21 +40,24 @@ class AddCategoryActivity : AppCompatActivity() {
         categoryDAO = db.categoryDAO()
         categoryRepository = CategoryRepository(db.categoryDAO())
 
+        //Creating the category and making sure all the fields are valid.
         addCategoryButton.setOnClickListener{
             val nameOfCategory = categoryNameTextEdit.text.toString()
 
             lifecycleScope.launch {
+                //Checking if the name field is blank
                 if(nameOfCategory.isBlank()){
                     Toast.makeText(this@AddCategoryActivity, "Please fill all fields", Toast.LENGTH_SHORT).show()
                     return@launch
                 }
 
+                //Checking if the name has been used before.
                 if(categoryRepository.isCategoryNameTaken(nameOfCategory)){
                     Toast.makeText(this@AddCategoryActivity, "Category already exists", Toast.LENGTH_SHORT).show()
                 } else {
                     val newcategory = Categories(userId = currentuserId, categoryName = nameOfCategory, categoryImage = "")
                     categoryRepository.addCategory(newcategory)
-                    Toast.makeText(this@AddCategoryActivity, "Registration successful", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddCategoryActivity, "Category Added", Toast.LENGTH_LONG).show()
                     finish()
                 }
             }

@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Logo -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="150dp"
@@ -26,6 +27,7 @@
             android:layout_marginBottom="24dp"
             app:srcCompat="@mipmap/logo" />
 
+        <!-- First Name -->
         <EditText
             android:id="@+id/firstNameText"
             android:layout_width="match_parent"
@@ -38,6 +40,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- Surame -->
         <EditText
             android:id="@+id/surnameText"
             android:layout_width="match_parent"
@@ -50,6 +53,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- Username -->
         <EditText
             android:id="@+id/usernameText"
             android:layout_width="match_parent"
@@ -62,6 +66,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- Password -->
         <EditText
             android:id="@+id/passwordText"
             android:layout_width="match_parent"
@@ -74,6 +79,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- Confirm Password -->
         <EditText
             android:id="@+id/confirmPasswordText"
             android:layout_width="match_parent"
@@ -86,6 +92,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- Register Button -->
         <Button
             android:id="@+id/registerButton"
             android:layout_width="200dp"
@@ -95,6 +102,7 @@
             android:backgroundTint="#2471a3"
             android:textColor="@android:color/white" />
 
+        <!-- Login Text -->
         <TextView
             android:id="@+id/loginText"
             android:layout_width="wrap_content"

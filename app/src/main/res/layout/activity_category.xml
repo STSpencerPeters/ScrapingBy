@@ -36,6 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp" />
 
+    <!-- Recycler View -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
         android:layout_width="0dp"
@@ -46,6 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Floating Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addCategoryButton"
         android:layout_width="wrap_content"

@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Profile Card (inside GridLayout now) -->
+        <!-- Profile Card -->
         <LinearLayout
             android:id="@+id/profileCard"
             android:layout_width="120dp"
@@ -64,6 +64,7 @@
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
+        <!-- Preference Card -->
         <LinearLayout
             android:id="@+id/preferencesCard"
             android:layout_width="120dp"
@@ -89,6 +90,7 @@
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
+        <!-- Category Card -->
         <LinearLayout
             android:id="@+id/categoryCard"
             android:layout_width="120dp"
@@ -114,6 +116,7 @@
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
+        <!-- Logout Card -->
         <LinearLayout
             android:id="@+id/logoutCard"
             android:layout_width="120dp"
