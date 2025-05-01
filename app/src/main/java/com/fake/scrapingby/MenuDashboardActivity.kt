@@ -79,12 +79,12 @@ class MenuDashboardActivity : AppCompatActivity() {
             when (item.itemId){
                 //This item will send the user to the Main Dashboard
                 R.id.home ->{
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainMenu::class.java))
                     true
                 }
                 //This item will send the user to the Adding Expense Dashboard
                 R.id.expense -> {
-                    //startActivity(Intent(this, ExpenseActivity::clas.java))
+                    startActivity(Intent(this, AddExpense::class.java))
                     true
                 }
                 //This item will send the user to the settings Dashboard
