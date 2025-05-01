@@ -19,13 +19,20 @@ import java.util.Date
         parentColumns = ["id"],
         childColumns = ["userId"],
         onDelete = ForeignKey.CASCADE
-    )],
-    indices = [Index("userId")]
+    ),
+                  ForeignKey(
+                      entity = Categories::class,
+                      parentColumns = ["id"],
+                      childColumns = ["categoryId"],
+                      onDelete = ForeignKey.CASCADE
+                  )],
+    indices = [Index("userId"), Index("categoryId")]
 )
 
 data class Expenses(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val userId: Int,
+    val categoryId: Int? = null,
     val expenseTitle : String,
     val expenseAmount : Double,
     val dateAdded : String,
