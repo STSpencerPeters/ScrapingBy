@@ -33,6 +33,7 @@ class MenuDashboardActivity : AppCompatActivity() {
         categoryCardLayout = findViewById(R.id.categoryCard)
         logoutCardLayout = findViewById(R.id.logoutCard)
 
+        bottomNavBarView.selectedItemId = R.id.menu
 
         //Card to send the user to the Profile Page
         profileCardLayout.setOnClickListener{
