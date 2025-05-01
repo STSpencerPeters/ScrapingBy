@@ -6,6 +6,7 @@ import android.icu.text.DecimalFormat
 import android.icu.util.CurrencyAmount
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
@@ -23,14 +24,13 @@ import org.w3c.dom.Text
 class AddExpense : AppCompatActivity() {
 
     private lateinit var bottomNavBarView: BottomNavigationView
-    private lateinit var textDescription: TextView
-    private lateinit var selectedMonth: String
-    private lateinit var selectedYear: String
-    private lateinit var selectedCategory: Categories
-    private lateinit var uploadImageButton: Button
-    private lateinit var saveExpenseButton: Button
+    private lateinit var textAmount: EditText
+    private lateinit var textDescription: EditText
     private lateinit var monthDropdown: AutoCompleteTextView
-    private lateinit var yearDropdown: AutoCompleteTextView
+    private lateinit var selectedMonth: String
+    private lateinit var textYear: EditText
+    private lateinit var categoryDropdown: AutoCompleteTextView
+    private lateinit var imagePreview: ImageView
     private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
     private var selectedImageUri: Uri? = null
 
@@ -39,7 +39,27 @@ class AddExpense : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_expense)
 
-        val amountField = findViewById<EditText>(R.id.editAmount)
+        textAmount = findViewById(R.id.editAmount)
+        textDescription = findViewById(R.id.editDescription)
+        textYear = findViewById(R.id.editYear)
+        categoryDropdown = findViewById(R.id.dropdownCategory)
+        imagePreview = findViewById(R.id.imagePreview)
+
+        //Populate drop down box for months
+        monthDropdown = findViewById(R.id.dropdownMonth)
+
+        val months = listOf(
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        )
+
+        val monthAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, months)
+        monthDropdown.setAdapter(monthAdapter)
+
+        //Force list drop down
+        monthDropdown.setOnClickListener {
+            monthDropdown.showDropDown()
+        }
 
 
         pickImageLauncher = registerForActivityResult(

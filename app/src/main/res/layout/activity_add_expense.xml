@@ -76,23 +76,23 @@
                     android:layout_marginTop="20dp"
                     android:hint="Select Month"
                     android:inputType="none"
-                    android:cursorVisible="false"
-                    android:focusable="false"
+                    android:backgroundTint="#000000"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:clickable="true"
                     app:layout_constraintTop_toBottomOf="@id/editDescription"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/dropdownYear"
+                    app:layout_constraintEnd_toStartOf="@id/editYear"
                     android:layout_marginEnd="8dp" />
 
                 <!-- Year Dropdown -->
-                <AutoCompleteTextView
-                    android:id="@+id/dropdownYear"
+                <EditText
+                    android:id="@+id/editYear"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="20dp"
-                    android:hint="Select Year"
-                    android:inputType="none"
-                    android:cursorVisible="false"
-                    android:focusable="false"
+                    android:hint="Enter Year"
+                    android:inputType="number"
                     app:layout_constraintTop_toBottomOf="@id/editDescription"
                     app:layout_constraintStart_toEndOf="@id/dropdownMonth"
                     app:layout_constraintEnd_toEndOf="parent"
