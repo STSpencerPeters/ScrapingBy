@@ -16,6 +16,6 @@ interface CategoryDAO {
     suspend fun getCategoriesForUser(userId: Int): List<Categories>
 
     //SQL statement to get category based off the categoryName
-    @Query("Select * from Category where categoryName = :categoryName")
-    suspend fun getCategoryByCategoryName(categoryName: String) : Categories?
+    @Query("Select * from Category where categoryName = :categoryName and userId = :userId limit 1")
+    suspend fun getCategoryByCategoryName(categoryName: String, userId: Int) : Categories?
 }

@@ -52,7 +52,7 @@ class AddCategoryActivity : AppCompatActivity() {
                 }
 
                 //Checking if the name has been used before.
-                if(categoryRepository.isCategoryNameTaken(nameOfCategory)){
+                if(categoryRepository.isCategoryNameTaken(nameOfCategory, currentuserId)){
                     Toast.makeText(this@AddCategoryActivity, "Category already exists", Toast.LENGTH_SHORT).show()
                 } else {
                     val newcategory = Categories(userId = currentuserId, categoryName = nameOfCategory, categoryImage = "")
