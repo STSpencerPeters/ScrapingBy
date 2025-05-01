@@ -16,4 +16,14 @@ class UserRepository(private val userDAO: UserDAO) {
     suspend fun isUsernameTaken(username: String): Boolean{
         return userDAO.getUserByUsername(username) != null
     }
+
+    //Function to get the UserID
+    suspend fun getUserById(id: Int): User? {
+        return userDAO.getUserById(id)
+    }
+
+    //Function to update the user's information.
+    suspend fun updateUser(user: User) {
+        userDAO.updateUser(user)
+    }
 }
