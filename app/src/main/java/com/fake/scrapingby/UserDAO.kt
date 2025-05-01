@@ -3,6 +3,7 @@ package com.fake.scrapingby
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface UserDAO {
@@ -22,9 +23,9 @@ interface UserDAO {
     @Query("SELECT * FROM Users WHERE id = :userId")
     suspend fun getUserById(userId: Int): User?
 
-    //SQL function to update the Users profilePicture
-    @Query("UPDATE Users SET profileImage = :profileImage WHERE id = :userId")
-    suspend fun updateUserProfileImage(profileImage: String, userId : Int)
+    //SQL function to update the Users information
+    @Update
+    suspend fun updateUser(user: User)
 
     //SQL function to update the Users Password
     @Query("UPDATE Users SET password =:password WHERE id = :userId")

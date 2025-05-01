@@ -3,6 +3,7 @@ package com.fake.scrapingby
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -47,9 +48,11 @@ class LoginActivity : AppCompatActivity() {
                     //Saving username for later use
                     val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
                     with(sharedPref.edit()){
-                        putString("loggedInUsername", username)
+                        putString("loggedInUsername", user.username)
+                        putInt("loggedInUserId", user.id)
                         apply()
                     }
+                    Log.d("LoginActivity", "User logged in: username=${user.username}, id=${user.id}")
                     Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
 
                     startActivity(Intent(this@LoginActivity, MenuDashboardActivity::class.java))
