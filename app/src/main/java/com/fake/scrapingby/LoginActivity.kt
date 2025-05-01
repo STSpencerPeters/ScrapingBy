@@ -50,7 +50,9 @@ class LoginActivity : AppCompatActivity() {
                         putString("loggedInUsername", username)
                         apply()
                     }
-                    Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()//Change when dashboard is added
+                    Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
+
+                    startActivity(Intent(this@LoginActivity, MenuDashboardActivity::class.java))
                 } else{
                     Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
                 }

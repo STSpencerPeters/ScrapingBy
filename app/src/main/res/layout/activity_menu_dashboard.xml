@@ -40,13 +40,16 @@
 
         <!-- Profile Card (inside GridLayout now) -->
         <LinearLayout
+            android:id="@+id/profileCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:background="@drawable/menu_card_background"
             android:elevation="4dp"
             android:gravity="center"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="40dp"
@@ -62,13 +65,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/preferencesCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:background="@drawable/menu_card_background"
             android:elevation="4dp"
             android:gravity="center"
-            android:layout_margin="8dp" >
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="40dp"
@@ -84,13 +90,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/categoryCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:background="@drawable/menu_card_background"
             android:elevation="4dp"
             android:gravity="center"
-            android:layout_margin="8dp" >
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="40dp"
@@ -106,13 +115,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/logoutCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:background="@drawable/menu_card_background"
             android:elevation="4dp"
             android:gravity="center"
-            android:layout_margin="8dp" >
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="40dp"
