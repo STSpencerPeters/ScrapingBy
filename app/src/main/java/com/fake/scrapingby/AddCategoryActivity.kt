@@ -64,7 +64,7 @@ class AddCategoryActivity : AppCompatActivity() {
         }
 
         backArrowButton.setOnClickListener{
-            startActivity(Intent(this, MenuDashboardActivity::class.java))
+            finish()
         }
     }
 }
