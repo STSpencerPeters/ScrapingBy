@@ -12,11 +12,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 //Creating the database to store the information.
-@Database(entities = [User::class, Expenses::class, Categories::class], version = 3)
+@Database(entities = [User::class, Expenses::class, Categories::class, Budget::class], version = 4)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDAO() : UserDAO
     abstract fun expenseDAO() : ExpensesDAO
     abstract fun categoryDAO(): CategoryDAO
+    abstract fun budgetDAO() : BudgetDAO
 
     companion object{
         @Volatile
