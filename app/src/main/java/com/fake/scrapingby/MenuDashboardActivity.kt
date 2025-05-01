@@ -27,6 +27,7 @@ class MenuDashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_dashboard)
 
         bottomNavBarView = findViewById(R.id.bottomNavigation)
+        bottomNavBarView.selectedItemId = R.id.menu
         profileCardLayout = findViewById(R.id.profileCard)
         preferencesCardlayout = findViewById(R.id.preferencesCard)
         categoryCardLayout = findViewById(R.id.categoryCard)

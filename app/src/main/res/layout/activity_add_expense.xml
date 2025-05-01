@@ -6,16 +6,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AddExpense">
 
-    <!-- FIXED TOP BAR -->
+    <!-- TOP BAR -->
     <TextView
         android:id="@+id/txtMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#4267FF"
         android:fontFamily="@font/alata"
-        android:text="HOME"
+        android:text="ADD EXPENSE"
         android:gravity="left"
         android:padding="12dp"
         android:textColor="#FFFFFF"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- SCROLLABLE FRAME BETWEEN TOP BAR AND NAV -->
+    <!-- SCROLLABLE CONTENT AREA -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
@@ -35,20 +35,135 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- SCROLLABLE CONTENT -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- Amount -->
+                <EditText
+                    android:id="@+id/editAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:hint="Amount (e.g. R1500)"
+                    android:inputType="numberDecimal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Description -->
+                <EditText
+                    android:id="@+id/editDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Description"
+                    android:inputType="textMultiLine"
+                    android:minLines="2"
+                    app:layout_constraintTop_toBottomOf="@id/editAmount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Month Dropdown -->
+                <AutoCompleteTextView
+                    android:id="@+id/dropdownMonth"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Select Month"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    app:layout_constraintTop_toBottomOf="@id/editDescription"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/dropdownYear"
+                    android:layout_marginEnd="8dp" />
+
+                <!-- Year Dropdown -->
+                <AutoCompleteTextView
+                    android:id="@+id/dropdownYear"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Select Year"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    app:layout_constraintTop_toBottomOf="@id/editDescription"
+                    app:layout_constraintStart_toEndOf="@id/dropdownMonth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="8dp" />
+
+                <!-- Category Dropdown -->
+                <AutoCompleteTextView
+                    android:id="@+id/dropdownCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Select Category"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    app:layout_constraintTop_toBottomOf="@id/dropdownMonth"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Upload Image Button -->
+                <Button
+                    android:id="@+id/btnUploadImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Image"
+                    android:backgroundTint="#4267FF"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@id/dropdownCategory"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Image Placeholder -->
+                <ImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#D3D3D3"
+                    android:contentDescription="Uploaded image preview"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toBottomOf="@id/btnUploadImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Save Button -->
+                <Button
+                    android:id="@+id/btnSaveExpense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Save Expense"
+                    android:backgroundTint="#2196F3"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@id/imagePreview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="24dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </FrameLayout>
 
-    <!-- FIXED BOTTOM NAVIGATION -->
+    <!-- BOTTOM NAVIGATION -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2196F3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:itemTextColor="@color/navigation_bar"
-        app:itemIconTint="@color/navigation_bar"/>
+        app:itemIconTint="@color/navigation_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
