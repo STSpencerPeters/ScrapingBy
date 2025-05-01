@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Item to send the user to the Home Page -->
     <item
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"
         android:title="Home" />
 
+    <!--Item to send the user to the Expense Page -->
     <item
         android:id="@+id/expense"
         android:icon="@drawable/ic_expenses"
         android:title="Expenses" />
 
+    <!--Item to send the user to the Menu Page -->
     <item
         android:id="@+id/menu"
         android:icon="@drawable/ic_menu"
