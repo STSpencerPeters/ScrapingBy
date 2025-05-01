@@ -47,7 +47,7 @@ class MainMenu : AppCompatActivity() {
                 }
                 //This item will send the user to the settings Dashboard
                 R.id.menu -> {
-                    //startActivity(Intent(this, MenuDashboardActivity::class.java))
+                    startActivity(Intent(this, MenuDashboardActivity::class.java))
                     true
                 }
                 else -> false
