@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -13,7 +14,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainMenu : AppCompatActivity() {
 
@@ -44,6 +47,11 @@ class MainMenu : AppCompatActivity() {
         val userDAO = db.userDAO()
         userRepo = UserRepository(db.userDAO())
 
+        val budgetDAO = db.budgetDAO()
+        val budgetRepo = BudgetRepository(budgetDAO)
+
+        val expenseRepo = ExpenseRepository(db.expenseDAO())
+
         val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("loggedInUserId", -1)
 
@@ -53,6 +61,24 @@ class MainMenu : AppCompatActivity() {
                 currentUser = user
                 user?.let {
                     textName.text = it.firstName
+
+                    //Fetch all expenses
+                    val allExpenses = expenseRepo.fetchExpenses(userId)
+                    val totalSpent = allExpenses.sumOf { it.expenseAmount }
+
+                    //Fetch Budget based on user ID
+                    val budget = withContext(Dispatchers.IO) {
+                        db.budgetDAO().getBudget(userId)
+                    }
+
+                    //Gets the max amount for the progress bar on the main page
+                    val maxBudget = budget?.budgetMaximum ?: 10000.0  // fallback default
+
+                    budgetProgressBar.max = maxBudget.toInt()
+                    budgetProgressBar.progress = totalSpent.toInt()
+
+                    textTotal.text = "Total: R${maxBudget.toInt()}"
+                    textSpent.text = "Spent: R${totalSpent.toInt()}"
                 }
             }
         } else
@@ -82,16 +108,51 @@ class MainMenu : AppCompatActivity() {
             }
         }
 
-
-
-
-        budgetProgressBar.setOnClickListener{
-            //startActivity(Intent(this, BudgetActivity::class.java))
+        //Clicking progress bar navigates to the SetBudgetPage
+        budgetProgressBar.setOnClickListener {
+            startActivity(Intent(this, SetBudgetPage::class.java))
         }
 
 
         buttonBreakdown.setOnClickListener{
-            //startActivity(Intent(this, BudgetBreakdownActivity::class.java))
+            startActivity(Intent(this, ViewBreakdown::class.java))
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        refreshBudgetData()
+    }
+
+    private fun refreshBudgetData() {
+        val db = AppDatabase.getInstance(this)
+        val userDAO = db.userDAO()
+        val budgetDAO = db.budgetDAO()
+        val budgetRepo = BudgetRepository(budgetDAO)
+        val expenseRepo = ExpenseRepository(db.expenseDAO())
+
+        val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
+        val userId = sharedPref.getInt("loggedInUserId", -1)
+
+        if (userId != -1) {
+            lifecycleScope.launch {
+                val user = userRepo.getUserById(userId)
+                currentUser = user
+                user?.let {
+                    textName.text = it.firstName
+
+                    val allExpenses = expenseRepo.fetchExpenses(userId)
+                    val totalSpent = allExpenses.sumOf { it.expenseAmount }
+
+                    val budget = budgetRepo.getBudget(userId)
+                    val maxBudget = budget?.budgetMaximum ?: 10000.0
+
+                    budgetProgressBar.max = maxBudget.toInt()
+                    budgetProgressBar.progress = totalSpent.toInt()
+
+                    textTotal.text = "Total: R${maxBudget.toInt()}"
+                    textSpent.text = "Spent: R${totalSpent.toInt()}"
+                }
+            }
         }
     }
 }
