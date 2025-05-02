@@ -28,7 +28,7 @@ This project is an Android application built using Android Studio. It's purpose 
 
 ---
 
-## 🔓 How to Access and Use This Repository
+## 📁 How to Access and Use This Repository
 
 #### Using Git:
 
