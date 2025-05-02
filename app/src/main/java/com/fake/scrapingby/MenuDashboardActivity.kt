@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -39,14 +40,14 @@ class MenuDashboardActivity : AppCompatActivity() {
         profileCardLayout.setOnClickListener{
             startActivity(Intent(this, ProfileActivity::class.java))
         }
-        /*
+
 
             //Card to send the user to the Preferences Page
             preferencesCardlayout.setOnClickListener{
-                startActivity(Intent(this, PreferencesActivity::class.java))
+                Toast.makeText(this@MenuDashboardActivity, "Feature coming soon.", Toast.LENGTH_SHORT).show()
             }
 
-         */
+
 
             //Card to send the user to the Category Page
             categoryCardLayout.setOnClickListener{
