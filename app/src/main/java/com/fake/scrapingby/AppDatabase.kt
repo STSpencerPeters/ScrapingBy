@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 //Creating the database to store the information.
-@Database(entities = [User::class, Expenses::class, Categories::class, Budget::class], version = 5)
+@Database(entities = [User::class, Expenses::class, Categories::class, Budget::class], version = 4)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDAO() : UserDAO
     abstract fun expenseDAO() : ExpensesDAO
@@ -22,7 +22,6 @@ abstract class AppDatabase : RoomDatabase(){
     companion object{
         @Volatile
         private var INSTANCE : AppDatabase? = null
-
         fun getInstance(context: Context): AppDatabase{
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
