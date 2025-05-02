@@ -17,4 +17,5 @@ interface BudgetDAO {
     //SQL Statement to fetch budget based on UserID
     @Query("SELECT * FROM Budget WHERE userId = :userId")
         suspend fun getBudget(userId: Int): Budget?
+
 }

@@ -1,0 +1,57 @@
+Index: app/src/main/java/com/fake/scrapingby/AddExpense.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.fake.scrapingby\r\n\r\nimport android.os.Bundle\r\nimport androidx.activity.enableEdgeToEdge\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.view.ViewCompat\r\nimport androidx.core.view.WindowInsetsCompat\r\n\r\nclass AddExpense : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        enableEdgeToEdge()\r\n        setContentView(R.layout.activity_add_expense)\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->\r\n            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)\r\n            insets\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/fake/scrapingby/AddExpense.kt b/app/src/main/java/com/fake/scrapingby/AddExpense.kt
+--- a/app/src/main/java/com/fake/scrapingby/AddExpense.kt	(revision 984b70d92afbb66d9fad564cf0f6ded6b27d400d)
++++ b/app/src/main/java/com/fake/scrapingby/AddExpense.kt	(date 1746139264299)
+@@ -7,6 +7,7 @@
+ import androidx.core.view.WindowInsetsCompat
+ 
+ class AddExpense : AppCompatActivity() {
++
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         enableEdgeToEdge()
+Index: app/src/main/java/com/fake/scrapingby/MenuDashboardActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.fake.scrapingby\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.LinearLayout\r\nimport androidx.activity.enableEdgeToEdge\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.view.ViewCompat\r\nimport androidx.core.view.WindowInsetsCompat\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView\r\nimport com.google.android.material.navigation.NavigationBarView\r\n\r\n//Cass that handles the screen that holds the buttons for, Profile, Preferences, Categories and Logout\r\nclass MenuDashboardActivity : AppCompatActivity() {\r\n\r\n\r\n    private lateinit var bottomNavBarView: BottomNavigationView\r\n    private lateinit var profileCardLayout : LinearLayout\r\n    private lateinit var preferencesCardlayout: LinearLayout\r\n    private lateinit var categoryCardLayout: LinearLayout\r\n    private lateinit var logoutCardLayout: LinearLayout\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        enableEdgeToEdge()\r\n        setContentView(R.layout.activity_menu_dashboard)\r\n\r\n        bottomNavBarView = findViewById(R.id.bottomNavigation)\r\n        profileCardLayout = findViewById(R.id.profileCard)\r\n        preferencesCardlayout = findViewById(R.id.preferencesCard)\r\n        categoryCardLayout = findViewById(R.id.categoryCard)\r\n        logoutCardLayout = findViewById(R.id.logoutCard)\r\n\r\n\r\n        //Card to send the user to the Profile Page\r\n        profileCardLayout.setOnClickListener{\r\n            startActivity(Intent(this, ProfileActivity::class.java))\r\n        }\r\n        /*\r\n\r\n            //Card to send the user to the Preferences Page\r\n            preferencesCardlayout.setOnClickListener{\r\n                startActivity(Intent(this, PreferencesActivity::class.java))\r\n            }\r\n\r\n         */\r\n\r\n            //Card to send the user to the Category Page\r\n            categoryCardLayout.setOnClickListener{\r\n                startActivity(Intent(this, CategoryActivity::class.java))\r\n            }\r\n\r\n\r\n        //Card to log the user out of the system and send them back to the Login Page.\r\n        logoutCardLayout.setOnClickListener{\r\n            //Clearing sharedPreferences so user is logged out.\r\n            val sharedPrefences = getSharedPreferences(\"Usersession\", Context.MODE_PRIVATE)\r\n            with(sharedPrefences.edit()){\r\n                clear()\r\n                apply()\r\n            }\r\n\r\n            val intent = Intent(this, LoginActivity::class.java)\r\n            /*\r\n                Code Attribution:\r\n                How to prevent going back to the previous activity?, 2011.\r\n                This stackoverflow page was talking about how to stop users from going back to the previous screen. The user Pulak provided an answer that worked for my situation.\r\n             */\r\n            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n        //Navigation bar locations\r\n        bottomNavBarView.setOnItemSelectedListener{ item ->\r\n            when (item.itemId){\r\n                //This item will send the user to the Main Dashboard\r\n                R.id.home ->{\r\n                    startActivity(Intent(this, MainActivity::class.java))\r\n                    true\r\n                }\r\n                //This item will send the user to the Adding Expense Dashboard\r\n                R.id.expense -> {\r\n                    //startActivity(Intent(this, ExpenseActivity::clas.java))\r\n                    true\r\n                }\r\n                //This item will send the user to the settings Dashboard\r\n                R.id.menu -> {\r\n                    startActivity(Intent(this, MenuDashboardActivity::class.java))\r\n                    true\r\n                }\r\n                else -> false\r\n            }\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/fake/scrapingby/MenuDashboardActivity.kt b/app/src/main/java/com/fake/scrapingby/MenuDashboardActivity.kt
+--- a/app/src/main/java/com/fake/scrapingby/MenuDashboardActivity.kt	(revision 984b70d92afbb66d9fad564cf0f6ded6b27d400d)
++++ b/app/src/main/java/com/fake/scrapingby/MenuDashboardActivity.kt	(date 1746138992195)
+@@ -32,6 +32,7 @@
+         categoryCardLayout = findViewById(R.id.categoryCard)
+         logoutCardLayout = findViewById(R.id.logoutCard)
+ 
++        bottomNavBarView.selectedItemId = R.id.menu
+ 
+         //Card to send the user to the Profile Page
+         profileCardLayout.setOnClickListener{
+Index: app/src/main/java/com/fake/scrapingby/CategoryRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.fake.scrapingby\r\n\r\nimport androidx.lifecycle.LiveData\r\n\r\nclass CategoryRepository(private val categoryDAO: CategoryDAO) {\r\n    //Function to add a category\r\n    suspend fun addCategory(categories: Categories){\r\n        categoryDAO.createCategory(categories)\r\n    }\r\n\r\n    //Function to get all the categories associated with the userId\r\n    suspend fun getCategory(userId: Int): List<Categories>{\r\n        return categoryDAO.getCategoriesForUser(userId)\r\n    }\r\n\r\n    //Function to check if the Category name has been used before\r\n    suspend fun isCategoryNameTaken(categoryName: String, userId: Int) : Boolean{\r\n        return categoryDAO.getCategoryByCategoryName(categoryName, userId) != null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/fake/scrapingby/CategoryRepository.kt b/app/src/main/java/com/fake/scrapingby/CategoryRepository.kt
+--- a/app/src/main/java/com/fake/scrapingby/CategoryRepository.kt	(revision 984b70d92afbb66d9fad564cf0f6ded6b27d400d)
++++ b/app/src/main/java/com/fake/scrapingby/CategoryRepository.kt	(date 1746138860877)
+@@ -17,4 +17,9 @@
+     suspend fun isCategoryNameTaken(categoryName: String, userId: Int) : Boolean{
+         return categoryDAO.getCategoryByCategoryName(categoryName, userId) != null
+     }
++
++    //Function to get Categories by name
++    suspend fun getCategoryByName(categoryName: String, userId: Int): Categories? {
++        return categoryDAO.getCategoryByCategoryName(categoryName, userId)
++    }
+ }
+\ No newline at end of file
