@@ -77,24 +77,27 @@ class AddExpense : AppCompatActivity() {
             return
         }
 
-        //Using UserID to fetch corresponding categorys
+        //Using UserID to fetch corresponding category's
         val db = AppDatabase.getInstance(this)
-        val expenseDAO = db.expenseDAO()
-        expenseRepository = ExpenseRepository(expenseDAO)
+        val categoryDAO = db.categoryDAO()
+        val categoryRepo = CategoryRepository(categoryDAO)
+        expenseRepository = ExpenseRepository(db.expenseDAO())
 
         categoryDropdown = findViewById(R.id.dropdownCategory)
 
+        var allCategories: List<Categories> = listOf() // Store for matching later
+
         lifecycleScope.launch {
-            val expenses = expenseRepository.fetchExpenses(userId)
+            allCategories = categoryRepo.getCategory(userId) // ← use your function
 
-
-            val categoryNames = expenses.map { it.categoryId }.distinct()
+            val categoryNames = allCategories.map { it.categoryName }
 
             val categoryAdapter = ArrayAdapter(
                 this@AddExpense,
                 android.R.layout.simple_dropdown_item_1line,
                 categoryNames
             )
+
             categoryDropdown.setAdapter(categoryAdapter)
 
             categoryDropdown.setOnClickListener {
@@ -104,7 +107,7 @@ class AddExpense : AppCompatActivity() {
 
         //Initilizing Button based on User logged in
 
-        expenseRepository = ExpenseRepository(expenseDAO)
+        //expenseRepository = ExpenseRepository(expenseDAO)
         saveExpenseButton = findViewById(R.id.btnSaveExpense)
 
         pickImageLauncher = registerForActivityResult(
@@ -163,7 +166,7 @@ class AddExpense : AppCompatActivity() {
             }
         }
 
-        // Logic for save Expense Button
+         //Logic for save Expense Button
 
         saveExpenseButton.setOnClickListener {
             val amountText = textAmount.text.toString()
@@ -172,6 +175,8 @@ class AddExpense : AppCompatActivity() {
             val year = textYear.text.toString()
             val date = "$month $year"
             val categoryName = categoryDropdown.text.toString()
+
+
 
             // Basic validations
             if (amountText.isBlank() || description.isBlank() || month.isBlank() || year.isBlank() || categoryName.isBlank()) {
@@ -185,12 +190,16 @@ class AddExpense : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            //Need to fix this, it pulls the category ID from the drop down box and not the table,
-            //Will fix in the morning, to tired now
-            val categoryId = selectedCategoryId ?: 1 // TODO: Lookup based on category name
-
             if (userId == -1) {
                 Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // ✅ Fix: Lookup categoryId by comparing names from allCategories
+            val matchedCategory = allCategories.find { it.categoryName.equals(categoryName, ignoreCase = true) }
+            val categoryId = matchedCategory?.id
+            if (categoryId == null) {
+                Toast.makeText(this, "Selected category not found", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -200,10 +209,10 @@ class AddExpense : AppCompatActivity() {
                 expenseTitle = categoryName,
                 expenseAmount = amount,
                 dateAdded = date,
-                description = description
+                description = description,
+                expenseImage = selectedImageUri?.toString()
             )
 
-            // Save using repository
             lifecycleScope.launch {
                 expenseRepository.addExpense(expense)
                 Toast.makeText(this@AddExpense, "Expense saved successfully", Toast.LENGTH_LONG).show()
