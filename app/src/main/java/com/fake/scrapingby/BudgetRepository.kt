@@ -2,12 +2,13 @@ package com.fake.scrapingby
 
 class BudgetRepository(private val budgetDAO: BudgetDAO) {
     //Function to add Budget Minimum
-    suspend fun createMinumumAmount(budget: Budget){
-        budgetDAO.createMinimumAmmount(budget)
+    suspend fun overwriteBudget(budget: Budget) {
+        budgetDAO.deleteBudgetByUser(budget.userId)
+        budgetDAO.createBudget(budget)
     }
 
-    //Function to add Budget Maximum
-    suspend fun createMaximumAmount(budget: Budget){
-        budgetDAO.createMaximumAmount(budget)
+    //Function to get a user budget based on their UserId
+    suspend fun getBudget(userId: Int): Budget? {
+        return budgetDAO.getBudget(userId)
     }
 }
