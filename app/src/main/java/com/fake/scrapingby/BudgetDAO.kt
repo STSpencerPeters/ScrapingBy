@@ -2,6 +2,7 @@ package com.fake.scrapingby
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.Query
 
 @Dao
 interface BudgetDAO {
@@ -12,4 +13,5 @@ interface BudgetDAO {
     //SQL Statement for creating maximum amount
     @Insert
     suspend fun createMaximumAmount(budget: Budget)
+
 }
