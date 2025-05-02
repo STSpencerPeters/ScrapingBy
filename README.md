@@ -1,6 +1,6 @@
 # ScrapingBy
 
-## 📱 Overview
+## 📖 Overview
 
 This project is an Android application built using Android Studio. It's purpose is to create a functional Budgeting Application for users to track and view their finances.
 
