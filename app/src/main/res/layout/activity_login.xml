@@ -7,77 +7,88 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/Logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@mipmap/logo"
-            android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <!-- Input Field for username -->
-        <EditText
-            android:id="@+id/usernameText"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:ems="10"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="12dp"
-            android:inputType="text"
-            android:hint="Username"
-            android:textSize="20sp"
-          />
+            <ImageView
+                android:id="@+id/Logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logo"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:maxHeight="300dp"
+                android:maxWidth="300dp"
+                android:scaleType="fitCenter" />
 
-        <!-- Input Field for password -->
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:ems="10"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/ic_password"
-            android:drawablePadding="12dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="20sp" />
+            <!-- Input Field for username -->
+            <EditText
+                android:id="@+id/usernameText"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:ems="10"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:hint="Username"
+                android:textSize="20sp"
+                />
 
-        <!-- Button to log the user in -->
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:text="Login"
-            android:backgroundTint="#2471a3"/>
+            <!-- Input Field for password -->
+            <EditText
+                android:id="@+id/passwordText"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:ems="10"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="12dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="20sp" />
+            <!-- Button to log the user in -->
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Login"
+                android:backgroundTint="#2471a3"/>
 
-        <!-- Text to send the user to the register page -->
-        <TextView
-            android:id="@+id/registerText"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:text="Create an Account"
-            android:textStyle="bold"
-            android:textColor="#2471a3"
-            android:clickable="true"
-            android:focusable="true"/>
+            <!-- Text to send the user to the register page -->
+            <TextView
+                android:id="@+id/registerText"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:text="Create an Account"
+                android:textStyle="bold"
+                android:textColor="#2471a3"
+                android:clickable="true"
+                android:focusable="true"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
