@@ -158,7 +158,7 @@
                             android:layout_marginTop="24dp"
                             android:background="#4267FF"
                             android:gravity="center"
-                            android:padding="10dp"
+                            android:padding="12dp"
                             android:text="Food\nR1 500,00"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF"
