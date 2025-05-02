@@ -82,6 +82,9 @@ If you're using **Android Studio 4.0 or later**, you can clone the repository wi
    The user can access this button from the "Menu Page"
    When the user clicks this they will be logged out and the user will return to the the "Login Page".
 
+## 🚀 Video:
+[Scraping By Budgeting App Live Demo.zip](https://github.com/user-attachments/files/20016841/Scraping.By.Budgeting.App.Live.Demo.zip)
+
 ## 📝 Reference List:
 Charfaoui Younes, 2023. Room Database - Using Foreign Keys!. [video online]. Available at: < https://www.youtube.com/watch?v=a7bHKh60bNY&t=233s&ab_channel=CharfaouiYounes >. [Accessed on 28 April 2025].
 
