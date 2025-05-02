@@ -57,6 +57,31 @@ If you're using **Android Studio 4.0 or later**, you can clone the repository wi
 
 ## 📁 Project Breakdown:
 
+1. **🧑‍💻 Login Page** 
+   The login page, will have input values for username and passowrd.
+   The user will also be able to access the register page through a text link.
+2. **🧑‍💻 Register Page**
+   The register page, will ask the user to fill in the information that is needed for a user to register.
+   The user will be able to access the login page if they already have an account through a text link.
+3. **📌 Home Page**
+   The user will be directed to the "Home Page" after logging in.
+   The user will be able to see multiple options they can access.
+4. **📈 Expense Page**
+   The user can acess the expense page from the "Home Page".
+   In this page the user will be provided field inputs to log a expense entry.
+5. **⚙️ Menu Page**
+   The user can access the "Menu Page" from the "Home Page".
+   In this page the user can access three pages; the "Profile Page", "Category Page" and the logout funtion.
+6. **🗂️ Category Page**
+   The user can access this page from the "Menu Page"
+   The user will be able to view and add categories from this page.
+7. **🧑‍💻 Profile Page**
+   The user can access this page from the "Menu Page".
+   The user will be able to view their information and add a profile image.
+8. **🧑‍💻 Logout Button**
+   The user can access this button from the "Menu Page"
+   When the user clicks this they will be logged out and the user will return to the the "Login Page".
+
 ## 📝 Reference List:
 Charfaoui Younes, 2023. Room Database - Using Foreign Keys!. [video online]. Available at: < https://www.youtube.com/watch?v=a7bHKh60bNY&t=233s&ab_channel=CharfaouiYounes >. [Accessed on 28 April 2025].
 
