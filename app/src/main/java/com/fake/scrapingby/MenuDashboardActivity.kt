@@ -27,11 +27,13 @@ class MenuDashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_dashboard)
 
         bottomNavBarView = findViewById(R.id.bottomNavigation)
+        bottomNavBarView.selectedItemId = R.id.menu
         profileCardLayout = findViewById(R.id.profileCard)
         preferencesCardlayout = findViewById(R.id.preferencesCard)
         categoryCardLayout = findViewById(R.id.categoryCard)
         logoutCardLayout = findViewById(R.id.logoutCard)
 
+        bottomNavBarView.selectedItemId = R.id.menu
 
         //Card to send the user to the Profile Page
         profileCardLayout.setOnClickListener{
@@ -77,12 +79,12 @@ class MenuDashboardActivity : AppCompatActivity() {
             when (item.itemId){
                 //This item will send the user to the Main Dashboard
                 R.id.home ->{
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainMenu::class.java))
                     true
                 }
                 //This item will send the user to the Adding Expense Dashboard
                 R.id.expense -> {
-                    //startActivity(Intent(this, ExpenseActivity::clas.java))
+                    startActivity(Intent(this, AddExpense::class.java))
                     true
                 }
                 //This item will send the user to the settings Dashboard

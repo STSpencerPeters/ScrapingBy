@@ -36,5 +36,6 @@ data class Expenses(
     val expenseTitle : String,
     val expenseAmount : Double,
     val dateAdded : String,
-    val description: String
+    val description: String,
+    val expenseImage: String? = null
 )

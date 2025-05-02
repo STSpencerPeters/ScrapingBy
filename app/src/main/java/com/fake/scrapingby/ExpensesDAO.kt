@@ -18,4 +18,8 @@ interface ExpensesDAO {
     //SQL statement to delete expense entries.
     @Delete
     suspend fun deleteExpense(expenses: Expenses)
+
+    //SQL statement to search for expense for a user in a specific category
+    @Query("SELECT * FROM Expenses WHERE userId = :userId AND categoryId = :categoryId")
+    suspend fun getExpensesByCategory(userId: Int, categoryId: Int): List<Expenses>
 }
