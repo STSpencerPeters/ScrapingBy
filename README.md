@@ -28,7 +28,7 @@ This project is an Android application built using Android Studio. It's purpose 
 
 ---
 
-## 📁 How to Access and Use This Repository
+## 📦 How to Access and Use This Repository
 
 #### Using Git:
 
@@ -54,5 +54,8 @@ If you're using **Android Studio 4.0 or later**, you can clone the repository wi
 7. **Run the App**  
   - Connect an Android device or start an emulator.
   - Click the green **Run** ▶️ button to build and launch the app.
+
+## 📁 Project Breakdown:
+
 
 
