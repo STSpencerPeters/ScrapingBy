@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 //Creating the database to store the information.
-@Database(entities = [User::class, Expenses::class, Categories::class, Budget::class], version = 4)
+@Database(entities = [User::class, Expenses::class, Categories::class, Budget::class], version = 5)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDAO() : UserDAO
     abstract fun expenseDAO() : ExpensesDAO
