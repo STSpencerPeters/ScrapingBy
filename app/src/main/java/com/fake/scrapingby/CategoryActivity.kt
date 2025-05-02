@@ -20,6 +20,7 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var categoryDAO: CategoryDAO
     private lateinit var addCategoryButton: FloatingActionButton
     private lateinit var backArrowButton: ImageButton
+    private var userId : Int = -1
 
     private lateinit var categoryRepo: CategoryRepository
 
@@ -39,7 +40,8 @@ class CategoryActivity : AppCompatActivity() {
         categoryRepo = CategoryRepository(db.categoryDAO())
 
         val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
-        val userId = sharedPref.getInt("loggedInUserId", -1)
+        userId = sharedPref.getInt("loggedInUserId", -1)
+
 
         if(userId != -1){
             loadCategories(userId)
@@ -53,6 +55,13 @@ class CategoryActivity : AppCompatActivity() {
             startActivity(Intent(this, MenuDashboardActivity::class.java))
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (userId != -1) {
+            loadCategories(userId)
+        }
     }
 
     private fun loadCategories(userId: Int){

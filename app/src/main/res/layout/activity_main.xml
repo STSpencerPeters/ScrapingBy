@@ -14,7 +14,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <TextView
+            android:id="@+id/txtMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4267FF"
+            android:fontFamily="@font/alata"
+            android:text="HOME"
+            android:gravity="left"
+            android:padding="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavBar"
@@ -27,6 +45,16 @@
         app:menu="@menu/navigation_bar"
         app:itemTextColor="@color/navigation_bar"
         app:itemIconTint="@color/navigation_bar"/>
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#4267FF"
+        app:menu="@menu/navigation_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

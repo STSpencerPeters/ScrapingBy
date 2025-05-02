@@ -14,7 +14,7 @@ class CategoryRepository(private val categoryDAO: CategoryDAO) {
     }
 
     //Function to check if the Category name has been used before
-    suspend fun isCategoryNameTaken(categoryName: String) : Boolean{
-        return categoryDAO.getCategoryByCategoryName(categoryName) != null
+    suspend fun isCategoryNameTaken(categoryName: String, userId: Int) : Boolean{
+        return categoryDAO.getCategoryByCategoryName(categoryName, userId) != null
     }
 }

@@ -53,15 +53,18 @@ class LoginActivity : AppCompatActivity() {
                         This reference was able to help me store the username and ID so that it can be called to verify the user that is logged in.
                      */
                     val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
-                    with(sharedPref.edit()){
+
+                    with(sharedPref.edit()) {
+
                         putString("loggedInUsername", user.username)
                         putInt("loggedInUserId", user.id)
                         apply()
                     }
-                    Log.d("LoginActivity", "User logged in: username=${user.username}, id=${user.id}")
-                    Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
 
-                    startActivity(Intent(this@LoginActivity, MenuDashboardActivity::class.java))
+                    Log.d("LoginActivity", "User logged in: username=${user.username}, id=${user.id}")
+                    Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()//Change when dashboard is added
+                    startActivity(Intent(this@LoginActivity, MainMenu::class.java))
+
                 } else{
                     Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
                 }
@@ -72,7 +75,5 @@ class LoginActivity : AppCompatActivity() {
         registerText.setOnClickListener{
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-
-
     }
 }
