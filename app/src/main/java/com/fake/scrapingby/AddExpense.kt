@@ -1,6 +1,7 @@
 package com.fake.scrapingby
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.icu.util.CurrencyAmount
@@ -12,17 +13,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
 class AddExpense : AppCompatActivity() {
 
+    private lateinit var expenseRepository: ExpenseRepository
     private lateinit var bottomNavBarView: BottomNavigationView
     private lateinit var textAmount: EditText
     private lateinit var textDescription: EditText
@@ -33,6 +38,8 @@ class AddExpense : AppCompatActivity() {
     private lateinit var imagePreview: ImageView
     private lateinit var pickImageLauncher: ActivityResultLauncher<Intent>
     private var selectedImageUri: Uri? = null
+    private var selectedCategoryId: Int? = null
+    private lateinit var saveExpenseButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +68,44 @@ class AddExpense : AppCompatActivity() {
             monthDropdown.showDropDown()
         }
 
+        //Get UserID and then fetching the corresponding categories for the drop down box
+        val sharedPref = getSharedPreferences("Usersession", Context.MODE_PRIVATE)
+        val userId = sharedPref.getInt("loggedInUserId", -1)
+
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        //Using UserID to fetch corresponding categorys
+        val db = AppDatabase.getInstance(this)
+        val expenseDAO = db.expenseDAO()
+        expenseRepository = ExpenseRepository(expenseDAO)
+
+        categoryDropdown = findViewById(R.id.dropdownCategory)
+
+        lifecycleScope.launch {
+            val expenses = expenseRepository.fetchExpenses(userId)
+
+
+            val categoryNames = expenses.map { it.categoryId }.distinct()
+
+            val categoryAdapter = ArrayAdapter(
+                this@AddExpense,
+                android.R.layout.simple_dropdown_item_1line,
+                categoryNames
+            )
+            categoryDropdown.setAdapter(categoryAdapter)
+
+            categoryDropdown.setOnClickListener {
+                categoryDropdown.showDropDown()
+            }
+        }
+
+        //Initilizing Button based on User logged in
+
+        expenseRepository = ExpenseRepository(expenseDAO)
+        saveExpenseButton = findViewById(R.id.btnSaveExpense)
 
         pickImageLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -97,8 +142,6 @@ class AddExpense : AppCompatActivity() {
 
         }
 
-
-
         bottomNavBarView.setOnItemSelectedListener{ item ->
             when (item.itemId){
                 //This item will send the user to the Main Dashboard
@@ -119,5 +162,54 @@ class AddExpense : AppCompatActivity() {
                 else -> false
             }
         }
+
+        // Logic for save Expense Button
+
+        saveExpenseButton.setOnClickListener {
+            val amountText = textAmount.text.toString()
+            val description = textDescription.text.toString()
+            val month = monthDropdown.text.toString()
+            val year = textYear.text.toString()
+            val date = "$month $year"
+            val categoryName = categoryDropdown.text.toString()
+
+            // Basic validations
+            if (amountText.isBlank() || description.isBlank() || month.isBlank() || year.isBlank() || categoryName.isBlank()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val amount = amountText.toDoubleOrNull()
+            if (amount == null) {
+                Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            //Need to fix this, it pulls the category ID from the drop down box and not the table,
+            //Will fix in the morning, to tired now
+            val categoryId = selectedCategoryId ?: 1 // TODO: Lookup based on category name
+
+            if (userId == -1) {
+                Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val expense = Expenses(
+                userId = userId,
+                categoryId = categoryId,
+                expenseTitle = categoryName,
+                expenseAmount = amount,
+                dateAdded = date,
+                description = description
+            )
+
+            // Save using repository
+            lifecycleScope.launch {
+                expenseRepository.addExpense(expense)
+                Toast.makeText(this@AddExpense, "Expense saved successfully", Toast.LENGTH_LONG).show()
+                finish()
+            }
+        }
+
     }
 }
