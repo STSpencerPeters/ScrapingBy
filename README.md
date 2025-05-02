@@ -1,4 +1,4 @@
-# ScrapingBy
+# ScrapingBy - ST10357026 & ST10247110
 
 ## 📖 Overview
 
