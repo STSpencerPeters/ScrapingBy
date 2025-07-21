@@ -1,4 +1,4 @@
-# ScrapingBy - Spencer Peters & ST10247110
+# ScrapingBy - Spencer Peters & Matthew Clement
 
 ## 📖 Overview
 
