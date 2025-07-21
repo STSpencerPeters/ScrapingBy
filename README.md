@@ -25,6 +25,7 @@ This project is an Android application built using Android Studio. It's purpose 
 3. **Verify Installation**  
    - Open Android Studio and create a new project to test the installation.
    - Ensure SDKs and emulator run properly.
+   
 
 ---
 
