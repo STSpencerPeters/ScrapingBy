@@ -85,6 +85,7 @@ If you're using **Android Studio 4.0 or later**, you can clone the repository wi
 
 ## 🚀 Video:
 [Scraping By Budgeting App Live Demo.zip](https://github.com/user-attachments/files/20016841/Scraping.By.Budgeting.App.Live.Demo.zip)
+[Live Demo](https://youtu.be/juGrvQPYHV4?si=4VZF0xY_ZvvGeZqI)
 
 ## 📝 Reference List:
 Charfaoui Younes, 2023. Room Database - Using Foreign Keys!. [video online]. Available at: < https://www.youtube.com/watch?v=a7bHKh60bNY&t=233s&ab_channel=CharfaouiYounes >. [Accessed on 28 April 2025].
